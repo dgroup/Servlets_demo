@@ -11,7 +11,7 @@
 
     <servlet-mapping>
         <servlet-name>Main</servlet-name>
-        <url-pattern>/hi</url-pattern>
+        <url-pattern>/Blog</url-pattern>
     </servlet-mapping>
 
 

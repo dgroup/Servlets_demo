@@ -3,7 +3,7 @@
 
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%.-19date [%-20thread] %.-5level %class.%method - %msg%n</pattern>
+            <pattern>%.-19date %.-5level %class.%method - %msg%n</pattern>
         </encoder>
     </appender>
 
