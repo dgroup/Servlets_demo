@@ -7,4 +7,13 @@ If you want to run this example, please perform steps below:
 2. Install [gradle](https://www.gradle.org/downloads); 
 3. Call `run.bat`.
   
-Just for fun.
+## Quick tech overview
+- Pure Servlet 2.5 & JSP;
+- Gradle (build system);
+- Jetty (web server). Integrated with `Gradle` via `jetty` plugin;
+- H2 (in-memory database). Integrated with `Gradle` via `flyway` plugin;
+- PMD (code quality validation). Integrated with `Gradle` via `pmd` plugin;
+- Bootstrap (css layouts);
+- jQuery ver.`1.11.1`. 
+
+Have a fun.
