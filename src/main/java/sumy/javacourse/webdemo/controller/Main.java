@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import sumy.javacourse.webdemo.model.Comment;
 import sumy.javacourse.webdemo.model.DBStub;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -52,7 +53,9 @@ public class Main extends HttpServlet {
         String resultURL = performYourLogic(req);
         LOG.debug("Result of your operation is {}", resultURL);
 
-        resp.sendRedirect(resultURL); // Forward vs Redirect. What? Why?
+        RequestDispatcher dispatcher = req.getRequestDispatcher( resultURL );
+        dispatcher.forward(req, resp);
+        //resp.sendRedirect(resultURL); // Forward vs Redirect. What? Why?
     }
 
 
@@ -135,10 +138,10 @@ public class Main extends HttpServlet {
 
 
     private static String indexURL(){
-        return "/Servlets_demo/jsp/index.jsp";
+        return "/jsp/index.jsp";
     }
     private static String commentsURL(){
-        return "/Servlets_demo/jsp/comments.jsp";
+        return "/jsp/comments.jsp";
     }
 
     private static String getParameterAsString(HttpServletRequest req, String parameterName){
