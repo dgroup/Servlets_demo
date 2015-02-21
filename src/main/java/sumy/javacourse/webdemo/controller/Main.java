@@ -82,22 +82,6 @@ public class Main extends HttpServlet {
         return indexURL();
     }
 
-    private static String saveVote(HttpServletRequest req) {
-        switch (getParameterAsString(req, "voteType")){
-            case AGREE     : agreeAmount++;      break;
-            case DISAGREE  : disagreeAmount++;   break;
-            case TENTATIVE : tentativeAmount++;  break;
-            default: throw new UnsupportedOperationException("It never gonna happen.");
-        }
-        LOG.debug("Agree {}, Disagree {}, Tentative {}", agreeAmount, disagreeAmount, tentativeAmount);
-
-        req.getSession().setAttribute(AGREE, agreeAmount);
-        req.getSession().setAttribute(DISAGREE, disagreeAmount);
-        req.getSession().setAttribute(TENTATIVE, tentativeAmount);
-
-        return commentsURL();
-    }
-
     @SuppressWarnings("unchecked")
     private static String showCommentsPage(HttpServletRequest req) {
         Integer agree       = (Integer) req.getSession().getAttribute(AGREE);
@@ -132,6 +116,22 @@ public class Main extends HttpServlet {
         } catch (SQLException e) {
             LOG.error("Unable to add new comment: "+ comment, e);
         }
+
+        return commentsURL();
+    }
+
+    private static String saveVote(HttpServletRequest req) {
+        switch (getParameterAsString(req, "voteType")){
+            case AGREE     : agreeAmount++;      break;
+            case DISAGREE  : disagreeAmount++;   break;
+            case TENTATIVE : tentativeAmount++;  break;
+            default: throw new UnsupportedOperationException("It never gonna happen.");
+        }
+        LOG.debug("Agree {}, Disagree {}, Tentative {}", agreeAmount, disagreeAmount, tentativeAmount);
+
+        req.getSession().setAttribute(AGREE, agreeAmount);
+        req.getSession().setAttribute(DISAGREE, disagreeAmount);
+        req.getSession().setAttribute(TENTATIVE, tentativeAmount);
 
         return commentsURL();
     }
