@@ -32,12 +32,12 @@ public class Main extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-//        try {
-//            DBStub.initDatabase();
-//        } catch (SQLException|ClassNotFoundException e) {
-//            LOG.error("Unable to initialize database.", e);
-//            throw new ServletException(e);
-//        }
+        try {
+            DBStub.initDatabase();
+        } catch (SQLException|ClassNotFoundException e) {
+            LOG.error("Unable to initialize database.", e);
+            throw new ServletException(e);
+        }
         LOG.info("Initialization of database finished..");
     }
 
