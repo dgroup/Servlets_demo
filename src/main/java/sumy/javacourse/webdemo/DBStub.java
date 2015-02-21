@@ -23,7 +23,7 @@ public final class DBStub {
         "comment varchar2(255), " +
         "created_date date )";
 
-    private static final String INSERT_DATA =
+    private static final String INSERT_COMMENT =
         "INSERT into comments (author, email, comment, created_date) VALUES (?, ?, ?, ?)";
 
 
@@ -44,7 +44,7 @@ public final class DBStub {
                 prep.execute();
             }
 
-            try(PreparedStatement prep = conn.prepareStatement(INSERT_DATA)) {
+            try(PreparedStatement prep = conn.prepareStatement(INSERT_COMMENT)) {
                 prep.setString(1, "Tolian");
                 prep.setString(2, "Tolian@mail.ru");
                 prep.setString(3, "What? Everybody must die...");
@@ -52,7 +52,7 @@ public final class DBStub {
                 prep.execute();
             }
 
-            try(PreparedStatement prep = conn.prepareStatement(INSERT_DATA)) {
+            try(PreparedStatement prep = conn.prepareStatement(INSERT_COMMENT)) {
                 prep.setString(1, "Hank");
                 prep.setString(2, "hacker@google.com");
                 prep.setString(3, "From my point of view it's very simple.");
@@ -60,7 +60,7 @@ public final class DBStub {
                 prep.execute();
             }
 
-            try(PreparedStatement prep = conn.prepareStatement(INSERT_DATA)) {
+            try(PreparedStatement prep = conn.prepareStatement(INSERT_COMMENT)) {
                 prep.setString(1, "xxxx");
                 prep.setString(2, "xxxx@xxxxx.ua");
                 prep.setString(3, "Stupid question at all... O_o");
@@ -73,7 +73,7 @@ public final class DBStub {
 
     public static void add(Comment comment) throws SQLException {
         try(Connection conn = DriverManager.getConnection(JDBC_URL, "sa", "");
-            PreparedStatement prep = conn.prepareStatement(INSERT_DATA)) {
+            PreparedStatement prep = conn.prepareStatement(INSERT_COMMENT)) {
             prep.setString(1, comment.getAuthor());
             prep.setString(2, comment.getEmail());
             prep.setString(3, comment.getText());
