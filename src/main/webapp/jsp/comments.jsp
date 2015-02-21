@@ -1,12 +1,45 @@
-<%@ page import="sumy.javacourse.webdemo.Comment" %>
-<%@ page import="sumy.javacourse.webdemo.Main" %>
-<%@ page import="static sumy.javacourse.webdemo.DBStub.comments" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="static sumy.javacourse.webdemo.model.DBStub.comments" %>
+<%@ page import="sumy.javacourse.webdemo.controller.Main" %>
+<%@ page import="sumy.javacourse.webdemo.model.Comment" %>
+<%
+  // Simple usage of HttpSession. Please do not use it in real applications/labs.
+  int agreeAmount     = getParameterAsInteger( session, Main.AGREE     );
+  int disagreeAmount  = getParameterAsInteger( session, Main.DISAGREE  );
+  int tentativeAmount = getParameterAsInteger( session, Main.TENTATIVE );
+
+  float total = agreeAmount + disagreeAmount + tentativeAmount;
+
+  float agreePercent      = calculatePercent( agreeAmount,     total );
+  float disagreePercent   = calculatePercent( disagreeAmount,  total );
+  float tentativePercent  = calculatePercent( tentativeAmount, total );
+%>
+
+<%!
+  // Methods example... It's deprecated approach too.
+  int getParameterAsInteger(HttpSession session, String key){
+    Object o = session.getAttribute(key);
+    if (o != null) {
+      return Integer.valueOf( o.toString() );
+    }
+    return 0;
+  }
+
+  float calculatePercent(int value, float total) {
+    return value != 0? value/total*100 : value;
+  }
+
+  String cutFractionalDigits(float value){
+    return String.format("%.0f", value);
+  }
+%>
+
+
 
 <!--
-  This is obsolete technology.
+  Warning: this is obsolete technology.
   Current approach implemented for example of pure Servlet/JSP technologies.
 -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,54 +58,51 @@
   <div class="jumbotron">
     <h2>Are the Servlet & JSP simple technologies?</h2>
 
-    <%
-      // Simple usage of HttpSession. Please do not use it in real applications/labs.
-      int agreeAmount = Integer.valueOf( session.getAttribute(Main.AGREE).toString() );
-      int disagreeAmount = Integer.valueOf( session.getAttribute(Main.DISAGREE).toString() );
-      int tentativeAmount = Integer.valueOf( session.getAttribute(Main.TENTATIVE).toString() );
-      int total = agreeAmount + disagreeAmount + tentativeAmount;
-
-      /* This is incorrect algorithm for percent calculation. It just for example of scriplets .*/
-      float agreePercent = agreeAmount * total / 100;
-      float disagreePercent = disagreeAmount * (total-agreePercent) / 100;
-      float tentativePercent = 100 - agreePercent - disagreePercent;
-    %>
-
     <div class="progress">
-      <div class="progress-bar progress-bar-success" role="progressbar" style="width: <%= agreePercent %>%">
+      <div class="progress-bar progress-bar-success"
+           role="progressbar"
+           style="width: <%= agreePercent %>%">
         Agree
       </div>
-      <div class="progress-bar progress-bar-danger" role="progressbar" style="width:  <%= disagreePercent %>%">
+
+      <div class="progress-bar progress-bar-danger"
+           role="progressbar"
+           style="width:  <%= disagreePercent %>%">
         Disagree
       </div>
-      <div class="progress-bar progress-bar-warning" role="progressbar" style="width: <%= tentativePercent %>%">
+
+      <div class="progress-bar progress-bar-warning"
+           role="progressbar"
+           style="width: <%= tentativePercent %>%">
         Tentative
       </div>
     </div>
+
     <table class="table">
       <thead>
-      <tr>
-        <th style="width: 30px">Vote</th>
-        <th>Percent</th>
-      </tr>
+        <tr>
+          <th style="width: 30px">Vote</th>
+          <th>Percent</th>
+        </tr>
       </thead>
+
       <tbody>
-      <tr>
-        <td>Agree</td>
-        <td><%= agreePercent %></td>
-      </tr>
-      <tr>
-        <td>Disagree</td>
-        <td><%=disagreePercent%></td>
-      </tr>
-      <tr>
-        <td>Tentative</td>
-        <td><%=tentativePercent%></td>
-      </tr>
-      <tr>
-        <th>Total</th>
-        <th><%=total%></th>
-      </tr>
+        <tr>
+          <td>Agree</td>
+          <td><%= cutFractionalDigits( agreePercent ) %>%</td>
+        </tr>
+        <tr>
+          <td>Disagree</td>
+          <td><%= cutFractionalDigits( disagreePercent ) %>%</td>
+        </tr>
+        <tr>
+          <td>Tentative</td>
+          <td><%= cutFractionalDigits( tentativePercent) %>%</td>
+        </tr>
+        <tr>
+          <th>Total</th>
+          <th><%= cutFractionalDigits( total ) %></th>
+        </tr>
       </tbody>
     </table>
 
@@ -108,7 +138,7 @@
 
         <div class="form-group">
           <label for="comment">Comment:</label>
-          <textarea class="form-control" rows="5" id="comment" name="comment" required="true"></textarea>
+          <textarea class="form-control" rows="5" id="comment" name="comment" required="true" maxlength="3000"></textarea>
         </div>
 
         <input type="hidden" name="action" value="saveComment">
@@ -118,7 +148,7 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-3 col-md-6 col-lg-4">
+    <div class="col-sm-12">
       <%
         for(Comment comment : comments()) {
       %>

@@ -1,4 +1,4 @@
-package sumy.javacourse.webdemo;
+package sumy.javacourse.webdemo.model;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -7,7 +7,7 @@ import java.util.List;
 
 
 /**
- * Warning. Do not use such approach. Just for jdbc stub.
+ * Warning. Do not use such approach. Just for database stub.
  */
 @Deprecated
 public final class DBStub {
@@ -20,20 +20,25 @@ public final class DBStub {
         "create table comments( " +
         "author varchar2(255)," +
         "email varchar2(255), " +
-        "comment varchar2(255), " +
+        "comment varchar2(3000), " +
         "created_date date )";
 
     private static final String INSERT_COMMENT =
         "INSERT into comments (author, email, comment, created_date) VALUES (?, ?, ?, ?)";
 
 
-    private DBStub(){}
+    static {
+        try {
+            Class.forName("org.h2.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new IllegalStateException("Unable to load h2 driver.", e);
+        }
+    }
+
+    private DBStub(){ }
 
 
     public static void initDatabase() throws SQLException, ClassNotFoundException {
-
-        Class.forName("org.h2.Driver");
-
         try(Connection conn = DriverManager.getConnection(JDBC_URL, "sa", "")) {
 
             try(PreparedStatement prep = conn.prepareStatement(DROP_COMMENTS)){

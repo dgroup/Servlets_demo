@@ -1,8 +1,5 @@
-package sumy.javacourse.webdemo;
+package sumy.javacourse.webdemo.model;
 
-/**
- * @author dubinka on 20.02.2015.
- */
 public class Comment {
     private String author;
     private String email;

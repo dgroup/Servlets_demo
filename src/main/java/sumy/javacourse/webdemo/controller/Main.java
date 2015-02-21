@@ -1,7 +1,9 @@
-package sumy.javacourse.webdemo;
+package sumy.javacourse.webdemo.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import sumy.javacourse.webdemo.model.Comment;
+import sumy.javacourse.webdemo.model.DBStub;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,20 +25,19 @@ public class Main extends HttpServlet {
     private static Integer requestCounter = 0;
 
     /* Session shared variables. Why? Session/Application variables vs DB. */
-    private static Integer agreeAmount = 30;
-    private static Integer disagreeAmount = 20;
+    private static Integer agreeAmount = 35;
+    private static Integer disagreeAmount = 15;
     private static Integer tentativeAmount = 50;
 
     @Override
     public void init() throws ServletException {
-        try {
-            DBStub.initDatabase();
-            LOG.info("Initialization of database finished..");
-
-        } catch (SQLException|ClassNotFoundException e) {
-            LOG.error("Unable to initialize database.", e);
-            throw new ServletException(e);
-        }
+//        try {
+//            DBStub.initDatabase();
+//        } catch (SQLException|ClassNotFoundException e) {
+//            LOG.error("Unable to initialize database.", e);
+//            throw new ServletException(e);
+//        }
+        LOG.info("Initialization of database finished..");
     }
 
     @Override

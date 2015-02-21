@@ -6,7 +6,7 @@
     <servlet>
         <display-name>DemoServlet</display-name>
         <servlet-name>Main</servlet-name>
-        <servlet-class>sumy.javacourse.webdemo.Main</servlet-class>
+        <servlet-class>sumy.javacourse.webdemo.controller.Main</servlet-class>
     </servlet>
 
     <servlet-mapping>
