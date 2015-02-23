@@ -135,7 +135,7 @@
                     value     = "saveVote">
 
       <button       type      = "submit"
-                    class     = "btn btn-success">Save</button>
+                    class     = "btn btn-success">Vote</button>
     </form>
   </div>
 

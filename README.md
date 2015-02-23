@@ -6,9 +6,9 @@ If you want to run this example, please perform steps below:
 1. Download [demo project](https://github.com/dgroup/Servlets_demo/archive/master.zip);
 2. Install [JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html);
 2. Install [gradle](https://www.gradle.org/downloads); 
-3. Call `run.bat`;
+3. Call `run.bat`. The output is:
+![alt tag](https://raw.github.com/dgroup/Servlets_demo/master/img/server_out.png)
 4. Browser > [http://localhost:8080/Servlets_demo](http://localhost:8080/Servlets_demo)
-
 ![alt tag](https://raw.github.com/dgroup/Servlets_demo/master/img/screen_1.png)
 ![alt tag](https://raw.github.com/dgroup/Servlets_demo/master/img/screen_2.png)
 
