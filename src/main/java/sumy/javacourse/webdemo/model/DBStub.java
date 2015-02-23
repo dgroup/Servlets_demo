@@ -12,6 +12,9 @@ import java.util.List;
 @Deprecated
 public final class DBStub {
     private static final String JDBC_URL    = "jdbc:h2:~/test";
+    private static final String JDBC_USER   = "";
+    private static final String JDBC_PASS   = "";
+
 
     private static final String DROP_COMMENTS = "DROP TABLE if exists comments";
     private static final String SELECT_ALL    = "select author, comment from comments order by created_date";
@@ -39,7 +42,7 @@ public final class DBStub {
 
 
     public static void initDatabase() throws SQLException, ClassNotFoundException {
-        try(Connection conn = DriverManager.getConnection(JDBC_URL, "sa", "")) {
+        try(Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASS)) {
 
             try(PreparedStatement prep = conn.prepareStatement(DROP_COMMENTS)){
                 prep.execute();
@@ -77,7 +80,7 @@ public final class DBStub {
     }
 
     public static void add(Comment comment) throws SQLException {
-        try(Connection conn = DriverManager.getConnection(JDBC_URL, "sa", "");
+        try(Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASS);
             PreparedStatement prep = conn.prepareStatement(INSERT_COMMENT)) {
             prep.setString(1, comment.getAuthor());
             prep.setString(2, comment.getEmail());
@@ -89,19 +92,18 @@ public final class DBStub {
     }
 
     public static Collection<Comment> comments() throws SQLException {
-        try(Connection conn = DriverManager.getConnection(JDBC_URL, "sa", "");
+        try(Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASS);
             PreparedStatement prep = conn.prepareStatement(SELECT_ALL);
             ResultSet res = prep.executeQuery()) {
 
             List<Comment> comments = new ArrayList<>();
             while (res.next()) {
                 Comment comm = new Comment();
-                comm.setAuthor(res.getString("author"));
-                comm.setText(res.getString("comment"));
+                comm.setAuthor  ( res.getString("author" ) );
+                comm.setText    ( res.getString("comment") );
                 comments.add(comm);
             }
             return comments;
         }
     }
-
 }

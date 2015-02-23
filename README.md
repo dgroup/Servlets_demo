@@ -8,7 +8,10 @@ If you want to run this example, please perform steps below:
 2. Install [gradle](https://www.gradle.org/downloads); 
 3. Call `run.bat`;
 4. Browser > [http://localhost:8080/Servlets_demo](http://localhost:8080/Servlets_demo)
-  
+
+![alt tag](https://raw.github.com/dgroup/Servlets_demo/master/img/screen_1.png)
+![alt tag](https://raw.github.com/dgroup/Servlets_demo/master/img/screen_2.png)
+
 ## Quick tech overview
 - Pure Servlet 2.5 & JSP;
 - Gradle (build system);
