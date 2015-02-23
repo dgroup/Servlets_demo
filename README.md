@@ -15,16 +15,10 @@ If you want to run this example, please perform steps below:
 ## Quick tech overview
 - Pure Servlet 2.5 & JSP;
 - Gradle (build system) 
- <a href="http://www.youtube.com/watch?feature=player_embedded&v=IjGMCD6FHZc
-" target="_blank"><img src="http://img.youtube.com/vi/IjGMCD6FHZc/0.jpg" 
-alt="Gradle Intro Workshop I Part 1" width="240" height="180" border="10" /></a>
 - Jetty (web server). Integrated with `Gradle` via `jetty` plugin;
 - H2 (in-memory database). Integrated with `Gradle` via `flyway` plugin;
 - PMD (code quality validation). Integrated with `Gradle` via `pmd` plugin;
 - Bootstrap (css layouts);
 - jQuery ver.`1.11.1`. 
-
-
-
 
 Have a fun.
