@@ -38,7 +38,7 @@
 
             <div class="col-sm-4">
                 <h3>Let's try</h3>
-                <a href="/Servlets_demo/Blog?action=toCommentsPage" >
+                <a href="Blog?action=toCommentsPage" >
                     <button type="button" class="btn btn-success">Push Me</button>
                 </a>
             </div>

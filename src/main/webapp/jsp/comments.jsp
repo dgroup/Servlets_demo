@@ -39,8 +39,6 @@
   Warning: this is obsolete technology.
   Current approach implemented for example of pure Servlet/JSP technologies.
 -->
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -106,7 +104,7 @@
       </tbody>
     </table>
 
-    <form role="form" action="/Servlets_demo/Blog">
+    <form role="form" action="Blog">
 
       <div class="radio">
         <label>
@@ -142,7 +140,7 @@
   <div class="row">
     <div            class     = "col-sm-3 col-md-6 col-lg-4">
       <form         role      = "form"
-                    action    = "/Servlets_demo/Blog">
+                    action    = "Blog">
 
         <div        class     = "form-group">
           <label    for       = "author">Author:</label>
@@ -170,7 +168,7 @@
                     rows      = "5"
                     id        = "comment"
                     name      = "comment"
-                    required  = "true"
+                    required  = "required"
                     maxlength = "3000"></textarea>
         </div>
 
@@ -187,7 +185,7 @@
   <div class="row">
     <div class="col-sm-12">
       <%
-      for(Comment comment : DBStub.comments()) {
+        for(Comment comment : DBStub.comments()) {
       %>
           <h3><%=comment.getAuthor()%></h3>
           <p><%=comment.getText() %></p>

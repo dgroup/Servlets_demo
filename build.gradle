@@ -21,23 +21,22 @@ repositories {
 dependencies {
 
     // Servlet Core libraries
-    providedCompile 'javax.servlet:servlet-api:2.5'
-    runtime 'javax.servlet:jstl:1.1.2'
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+    runtime         'javax.servlet:jstl:1.1.2'
 
     // Logging frameworks
-    compile group: 'org.slf4j',         name: 'slf4j-api',          version:'1.7.7'
-    compile group: 'ch.qos.logback',    name: 'logback-core',       version:'1.1.2'
-    compile group: 'ch.qos.logback',    name: 'logback-classic',    version:'1.1.2'
+    compile 'org.slf4j:slf4j-api:1.7.7'
+    compile 'ch.qos.logback:logback-core:1.1.2'
+    compile 'ch.qos.logback:logback-classic:1.1.2' 
 
-    compile group: 'commons-collections',   name: 'commons-collections', version:'3.2'
-    compile group: 'org.apache.commons',    name: 'commons-lang3',       version: '3.3.2'
+    compile 'commons-collections:commons-collections:3.2'
+    compile 'org.apache.commons:commons-lang3:3.3.2'
 
     // In memory database
-    compile group: 'com.h2database',    name: 'h2',     version: '1.4.185'
-
+    compile 'com.h2database:h2:1.4.185'
 
     // Testing of code functionality
-    testCompile group: 'junit', name: 'junit', version:'4.+'
+    testCompile 'junit:junit:4.+'
 }
 
 pmd {
@@ -45,6 +44,6 @@ pmd {
 }
 
 flyway {
-    url = 'jdbc:h2:~/test'
+    url = 'jdbc:h2:~/demo'
     user = 'sa'
 }
